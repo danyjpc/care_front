@@ -1,0 +1,25 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+        <div class="back" (click)="backClicked()"> <mat-icon class="s-50">arrow_back </mat-icon></div>
+        <h1> Resultados de la busqueda </h1>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+        <div fxLayout="row" fxLayoutAlign="end start">
+            <p  class=" pr-20"><b>Coincidencia: {{this.searchData.total_records}}</b></p>
+        </div>
+        
+        <ng-container *ngFor="let record of this.searchData.records">
+            <app-global-search-widget [record]="record"  class="pt-8"></app-global-search-widget>
+        </ng-container>
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+
+
+

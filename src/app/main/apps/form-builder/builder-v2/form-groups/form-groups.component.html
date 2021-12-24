@@ -1,0 +1,46 @@
+
+    <mat-expansion-panel id="grups"  style="margin-top: 15px !important" (opened)="loadQuestions(group)"  (closed)="unloadQuestion()">
+        <mat-expansion-panel-header>
+            <mat-panel-title>  <h2>{{group.name_group}} </h2></mat-panel-title>
+        </mat-expansion-panel-header>
+            <div cdkDropList (cdkDropListDropped)="drop($event)" class="list">
+                <ng-container id="questions">
+                    <app-questions class="box" cdkDrag
+                        *ngFor="let question of questions" 
+                        [question]="question"
+                        [group]="group">
+                    </app-questions>
+                </ng-container>
+            </div>
+            
+            
+        <mat-action-row>
+
+            <button  mat-button [matMenuTriggerFor]="typeQuestions" aria-label="Example icon-button with a menu">
+                <span>Añadir Pregunta</span>
+            </button>
+
+            <mat-menu #typeQuestions="matMenu">
+                <button (click)="add_question_to_group(inputType, group)" *ngFor="let inputType of inputTypes; let i=index" mat-menu-item>  <mat-icon>{{inputType.icon}}</mat-icon>
+                    <span>{{inputType.description}}</span>
+                </button>
+            </mat-menu>
+
+
+
+            <button mat-icon-button [matMenuTriggerFor]="optionsGroup" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #optionsGroup="matMenu">
+                <button (click)="editar_from_group(group)"  mat-menu-item>  <mat-icon>edit</mat-icon>
+                    <span>Cambiar nombre al Grupo</span>
+                </button>
+                <button (click)="remove_group(group)" mat-menu-item> <mat-icon>delete</mat-icon>
+                    <span>Eliminar Grupo</span>
+                </button>
+            </mat-menu>
+        </mat-action-row>
+    </mat-expansion-panel>
+
+

@@ -1,0 +1,38 @@
+<form action="" #moduleForm="ngForm">
+    <h2 mat-dialog-title>{{this.title}} Modulo</h2>
+    <div mat-dialog-content fxLayout="column">
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>Nombre del Módulo</mat-label>
+            <input matInput [(ngModel)]="this.module.name_module" required  id="name_module" name="name_module">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>Icono</mat-label>
+            <input matInput [(ngModel)]="this.module.icon" required  id="icon" name="icon">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>URL Imagen</mat-label>
+            <input matInput [(ngModel)]="this.module.picture" required  id="picture" name="picture">
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="this.dialogRef.close()">cancelar</button>
+
+        <button *ngIf="this.title == 'Agregar'"
+            mat-raised-button
+            [mat-dialog-close]="module" 
+            [disabled]="!moduleForm.valid"
+            cdkFocusInitial> 
+            <span>Agregar</span>
+        </button>
+
+        <button *ngIf="this.title == 'Actualizar'"
+            mat-raised-button
+            [mat-dialog-close]="module"
+            [disabled]="!moduleForm.valid" 
+            cdkFocusInitial> 
+            <span>Actualizar</span>
+        </button>
+    </div>
+    <br>
+</form>

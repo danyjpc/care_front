@@ -1,0 +1,23 @@
+<form fxLayout="column" fxFlex="100" #filterForm="ngForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Filtrar por Módulo</mat-label>
+        <mat-select  [(ngModel)]="this.FilterParams.module" name="module" (selectionChange)="loadCategoriesByModule($event.value)" required>
+          <mat-option *ngFor="let module of ProjectModules; let i=index"  [value]="module.module_id">
+            {{module.name_module}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Filtrar por Categoría</mat-label>
+        <mat-select [(ngModel)]="this.FilterParams.category" name="category">
+          <mat-option *ngFor="let category of ProjectCategories; let i=index" [value]="category.category_id" >
+            {{category.name_category}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button [disabled]="!filterForm.valid" class="mb-8" (click)="filterForms()" style="width: 100;" mat-raised-button>Filtrar</button>
+    <button  (click)="showAllForms()" style="width: 100;" mat-raised-button>Mostrar Todos los Formularios</button>
+</form>
+

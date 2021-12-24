@@ -1,0 +1,24 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center space-between">
+        <div fxFlex="80" fxLayout="row" fxLayoutAlign="start center">
+            <app-arrow-back></app-arrow-back>
+            <h2 class="text"> Respuestas del formulario {{this.form.name_form}} </h2>
+        </div>
+        <div fxFlex="20" fxLayoutAlign="end start">
+            <button (click)="download_csv()" style="align-items: rigth;" class="pink-600-fg" mat-raised-button>Descargar CSV</button>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-48">
+        <app-form-statistics-answers-list></app-form-statistics-answers-list>      
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+
+
+

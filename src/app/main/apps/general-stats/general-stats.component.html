@@ -1,0 +1,74 @@
+<div class="page-layout carded fullwidth">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent gr"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+      <!-- CONTENT HEADER -->
+      <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+          <app-arrow-back></app-arrow-back>
+          <h2 class="text">Estadísticas Generales</h2>
+      </div>
+      <!-- / CONTENT HEADER -->
+
+      <!-- CONTENT CARD -->
+      <div class="content-card" >
+
+          <!-- CONTENT -->
+          <div class="content p-24" fxLayout="row" fxLayoutAlign="start start" fxFlex>
+
+              <div fxLayout="column" class="p-16" fxFlex="30">
+                <app-filter-component></app-filter-component>
+              </div>
+
+              <div fxLayout="column" n class="p-16" fxFlex="70">
+                <ng-container *ngIf="showChart">
+                  
+                  <app-general-map-widget></app-general-map-widget>
+
+                  <app-general-chart-widget 
+                    [stats]="'modules'"
+                    [label]="'Distribución de boletas por Módulo'"
+                    [chartType] ="'pie'">
+                  </app-general-chart-widget>
+
+                  <app-general-chart-widget 
+                    [stats]="'forms'"
+                    [label]="'Total de Boletas Registradas por Formulario'"
+                    [chartType] ="'column'">
+                  </app-general-chart-widget>
+
+
+                  <app-general-chart-widget 
+                    [stats]="'dates'"
+                    [label]="'Distribución de Boletas por Rango de Fecha'"
+                    [chartType] ="'area'">
+                  </app-general-chart-widget>
+
+                  <app-general-chart-widget 
+                    [stats]="'user_surveys'"
+                    [label]="'Distribución de Boletas por Usuario'"
+                    [chartType] ="'bar'">
+                  </app-general-chart-widget>
+
+
+                </ng-container>
+                
+                
+                
+              </div>
+
+          </div>
+          <!-- / CONTENT -->
+
+      </div>
+      <!-- / CONTENT CARD -->
+
+  </div>
+  <!-- / CENTER -->
+
+</div>
+

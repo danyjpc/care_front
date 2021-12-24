@@ -1,0 +1,14 @@
+
+
+<div class="pl-16 pr-16">
+    <mat-form-field appearance="outline" fxFlex="100">
+        <mat-label>Filtrar</mat-label>
+        <input matInput [formControl]="searchInput"  id="search" name="search">
+    </mat-form-field>
+</div>
+
+
+<ng-container *ngFor="let formulario of Formularios">
+    <app-single-view-form-widget [formulario]="formulario" class="pt-8"></app-single-view-form-widget>
+</ng-container>
+

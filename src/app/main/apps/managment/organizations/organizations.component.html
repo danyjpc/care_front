@@ -1,0 +1,22 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center space-between">
+        <div fxFlex="70" fxLayout="row" fxLayoutAlign="start center"><app-arrow-back></app-arrow-back><h2 class="text"> Administrar Instituciones</h2></div>
+        <div fxFlex="30" fxLayoutAlign="end start"> <button mat-raised-button style="align-items: rigth;" (click)="openOrgForm()" class="pink-600-fg">Agregar Instituciones</button></div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-48">
+
+        <mat-card>
+            
+            <app-organizations-list></app-organizations-list>
+
+        </mat-card>
+           
+    </div>
+    <!-- / CONTENT -->
+
+</div>

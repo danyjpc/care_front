@@ -1,0 +1,34 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+       <app-arrow-back></app-arrow-back>
+        <h2 class="text">Administrar configuraciones</h2>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-48">
+
+        <mat-card>
+            
+            <div fxFlex="60" fxFlex.xs="100" fxLayout="column" class="pl-20">
+                <div *ngFor="let config of this.configs">
+                    <div fxLayout="column" class="quest-div" class="pb-20">
+                    <span><b> {{config.config_name | titlecase}}</b></span>
+                    <mat-form-field  appearance="outline" fxFlex="100">                   
+                        <input matInput [(ngModel)]="config.config_value" [name]="config.config_id" [id]="config.config_id" >
+                        <mat-hint >{{config.description}}</mat-hint>
+                    </mat-form-field>
+                </div>
+                </div>
+                <button mat-button (click)="updateConfig()" fxFlex="100" class="orange-300-bg" style="color: white;"> Actualizar</button>
+            </div>
+            
+        </mat-card>
+        
+           
+    </div>
+    <!-- / CONTENT -->
+
+</div>

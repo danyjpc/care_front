@@ -1,0 +1,18 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center space-between">
+        <app-arrow-back></app-arrow-back>
+        <div fxFlex="70"><h2> Formulario No. {{this.formulario.form_id}} -{{this.formulario.name_form}} - </h2></div>
+        <div fxFlex="30" fxLayoutAlign="end start"> <button (click)="showForm()" style="align-items: rigth;" class="pink-600-fg" mat-raised-button>Vista previa</button></div>
+        
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24 center" >
+            <app-form-groups-list></app-form-groups-list>
+    </div>
+    <!-- / CONTENT -->
+
+</div>

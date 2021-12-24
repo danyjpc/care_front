@@ -1,0 +1,156 @@
+<mat-card>
+    <div fxLayout="column" fxFlex="100">
+        <form action=""  #surveyForm="ngForm" (ngSubmit)="send_answers(surveyForm)">
+            <div *ngFor="let group of this.quesiton_group" class="p-10">
+                
+                <div style="background: gray;" class=" pt-4 pb-4 pl-12 pr-12 m-16">
+                    <h2 style="color: #fff;">{{group.name_group  }}</h2>
+                </div>
+
+
+                <ng-container id="questionsByGruuo" *ngFor="let question of group.questions">
+
+                    <ng-container *ngIf="question.type === 'inital-last'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">Tipo de Boleta</span>
+                            <mat-radio-group aria-label="Select an option" class="example-radio-group" [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id">
+                                <mat-radio-button class="example-radio-button"  value="INICIAL">INICIAL</mat-radio-button>
+                                <mat-radio-button class="example-radio-button"  value="FINAL">FINAL</mat-radio-button>
+                            </mat-radio-group>
+                        </div>  
+                    </ng-container>
+                    
+
+                    <ng-container *ngIf="question.type ==='text'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                                <input matInput [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id">
+                            </mat-form-field>
+                        </div>
+                    </ng-container>
+                    
+                    <ng-container *ngIf="question.type ==='text-area'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <textarea matInput [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="question.type === 'radio'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-radio-group aria-label="Select an option" class="example-radio-group" [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id">
+                                <mat-radio-button class="example-radio-button"  *ngFor="let option of question.options" [value]="option.value">{{option.value}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>  
+                    </ng-container>
+
+                    <ng-container *ngIf="question.type === 'checkbox'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                                <mat-select [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id"  multiple>
+                                  <mat-option *ngFor="let option of question.options" [value]="option.value">{{option.value}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>    
+
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="question.type === 'date'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                                <input type="date" matInput [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id">
+                            </mat-form-field>
+                        </div>
+                    </ng-container>
+                    
+                    <ng-container *ngIf="question.type === 'number'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                                <input type="number" matInput [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id" pattern="[0-9]+"     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
+                            </mat-form-field>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="question.type === 'select'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                                <mat-select [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id" >
+                                  <mat-option *ngFor="let option of question.options" [value]="option.value">{{option.value}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                    </ng-container>
+
+
+
+                    <ng-container *ngIf="question.type === 'boolean'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question }}</span>
+                            <mat-radio-group aria-label="Select an option" class="example-radio-group" [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id">
+                                <mat-radio-button class="example-radio-button"  value="SI">SI</mat-radio-button>
+                                <mat-radio-button class="example-radio-button"  value="NO">NO</mat-radio-button>
+                            </mat-radio-group>
+                        </div>  
+                    </ng-container>
+                    
+
+                    <ng-container *ngIf="question.type ==='state'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question}}</span>
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-select [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id" (selectionChange)="getCityData($event.value)" >
+                                  <mat-option *ngFor="let departamentos of question.options" [value]="departamentos.option_id">{{departamentos.value}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>  
+                    </ng-container>
+                    
+
+                    <ng-container *ngIf="question.type ==='city'">
+                        <div fxLayout="column" class="question-div">
+                            <span class="question-label">{{question.name_question}}</span>
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-select [(ngModel)]="question.answer" [name]="question.question_id" [id]="question.question_id" >
+                                  <mat-option *ngFor="let municipios of this.statesTypology.childs" [value]="municipios.typology_id">{{municipios.description}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>  
+                    </ng-container>
+                    
+                    
+                    
+
+
+
+                </ng-container>
+                
+                
+                
+                
+                
+
+
+            </div>
+
+            <div class="p-36" *ngIf="this.showButton =='true'">
+                <button type="submit" style="max-width: 100%; width: 100%;" color="primary" mat-raised-button>Enviar Respuestas</button>
+            </div>
+        </form>
+
+
+    </div>
+</mat-card>
+
+
+
+
+
+

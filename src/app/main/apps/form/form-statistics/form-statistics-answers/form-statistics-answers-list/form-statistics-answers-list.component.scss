@@ -1,0 +1,22 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    //display: block;
+    //overflow-x: auto;
+}
+.mat-cell,
+.mat-header-cell {
+  padding: 0px 8px;
+  max-width: 400px;
+  min-width: 55px;
+
+  word-wrap: initial;
+  white-space: nowrap;
+  overflow-y: auto;
+  vertical-align: middle;
+}
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
+

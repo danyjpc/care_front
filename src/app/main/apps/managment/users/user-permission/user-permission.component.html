@@ -1,0 +1,58 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+        <div  (click)="backClicked()"> <mat-icon class="s-50">arrow_back </mat-icon></div>
+        <h2 class="text" >Administrar permisos de {{this.admUser.person.first_name}} {{this.admUser.person.last_name}}</h2>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-48">
+
+        <mat-card>
+            
+            <div fxLayout="column" fxflex="100">
+                <form action="" #permissionForm="ngForm" style="padding: 20px;">
+                    <div *ngFor="let module of this.ListPermissions; let moduleIndex = index" class="p-10">
+                        <div style="background: #ea4b7c;" class=" pt-2 pb-2 pl-12 pr-12 m-16">
+                            <h2 style="color: #fff;"> Módulo {{moduleIndex+1}}- {{module.name_module |titlecase }}</h2>
+                        </div>
+                        
+                        <div fxLayout="column" class="p-20">
+                            <ng-container *ngFor="let permission of module.permissions; let permisionIndex = index" >
+
+                                <div fxLayout="row">
+
+                                            <div fxFlex="30">
+                                                Permisos Para {{ permission.alias}}
+                                            </div>
+
+                                            <div   class="question-div" fxFlex="70" fxFlexAlign="start start ">
+                                                NO
+                                                <mat-slide-toggle 
+                                                    [(ngModel)]="ListPermissions[moduleIndex].permissions[permisionIndex].has_permissions" 
+                                                    [name]="'permission-'+ moduleIndex + '-' + permisionIndex "  
+                                                    [id]="'permission-'+ moduleIndex + '-' + permisionIndex " >
+                                                    
+                                                SI
+                                                </mat-slide-toggle>
+                                            </div>
+                                </div>
+
+                            </ng-container>
+                        </div>
+                    </div>
+                </form>
+                <div class="px-36 py-20" >
+                    <button color="primary" class=" btn  fuse-white--fg" mat-raised-button (click)="updateState()">  <mat-icon>save</mat-icon> Modificar Permisos. </button>
+                </div>
+            </div>
+
+        </mat-card>
+           
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+

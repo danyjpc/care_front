@@ -1,0 +1,31 @@
+<div id="mail-confirm" class="back" fxLayout="column" *ngIf="this.admConfigs[0]"
+    [ngStyle]="{'background-image': 'url('+this.admConfigs[4].config_value+')'}">
+
+    <div id="mail-confirm-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="mail-confirm-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="logo">
+                <mat-icon class="mat-accent s-96">email</mat-icon>
+            </div>
+
+            <div class="title">¡La solicitud se ha completado con éxito!</div>
+
+            <div class="subtitle">
+                <p>
+                    Se ha enviado un correo electrónico a su cuenta.
+                </p>
+                <p>      
+                    Revise su bandeja de entrada.
+                </p>
+            </div>
+
+            <div class="message">
+                <a class="link" [routerLink]="'/pages/auth/login'">Volver a la página de inicio de sesión</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

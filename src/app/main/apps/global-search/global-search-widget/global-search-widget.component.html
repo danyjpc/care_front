@@ -1,0 +1,30 @@
+<mat-card class="m-12 pl-20 pr-20 border">
+    <div fxLayout="row wrap" fxLayout.xs="column" fxFlex="100">
+        <div fxFlex="10" fxFlex.xs="100" fxFlex.sm="20" fxLayout="column" fxLayoutAlign="center center">
+            <mat-icon class="mat-icon" fxFlexFill fxLayoutAlign="center center">assignment</mat-icon>
+        </div>
+        <div fxFlex="55"  fxFlex.xs="100" fxFlex.sm="75" fxLayout="column"  fxLayoutAlign="start start">
+            <span class="mat-body-1"><b>Formulario: </b>{{record.form_name}}</span>
+            <span class="mat-body-1"><b>Pregunta: </b>{{record.question}}</span>
+            <span class="mat-body-1"><b> Respuesta: </b>{{record.answer}}</span>
+
+        </div>
+        <div fxFlex="35" fxFlex.xs="100" fxFlex.sm="100" fxLayout="column" fxLayoutAlign="start end">
+            <div fxLayout="row" fxLayoutAlign="end start">
+                <div class="label " fxLayout="row" fxLayoutAlign="start center">
+                    <div class="label-color" [ngStyle]="{'background-color': 'orange'}"></div>
+                    <div class="label-title"> Módulo: {{record.module_name}}</div>
+                </div>
+                <div class="label " fxLayout="row" fxLayoutAlign="start center">
+                    <div class="label-color" [ngStyle]="{'background-color': 'pink'}"></div>
+                    <div class="label-title"> Categoría: {{record.category_name}}</div>
+                </div>
+            </div>
+            <br>
+            <div fxLayout="column" fxLayoutAlign="end end">
+                <span class="mat-body-1"><b>Creado el:  {{record.date_created | date :
+                    'mediumDate'}}</b></span>
+            </div>
+        </div>
+    </div>
+</mat-card>

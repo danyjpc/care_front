@@ -1,0 +1,29 @@
+<div fxLayout="column" class="widget" [ngStyle]="{'background-image': 'url(' + projectModule.picture + ')'}"
+  fxLayoutAlign="center center" fxFlex="100">
+  <button mat-button (click)="redirect(projectModule)">
+    <p class="tamaño-tex">
+      <mat-icon class="mat-icon">{{projectModule.icon | lowercase}}  </mat-icon>
+      <br>
+      {{projectModule.name_module}}
+    </p>
+  </button>
+
+</div>
+
+<!--
+<div class="contenedor">
+  <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  <div class="centrado">
+    <button mat-button (click)="redirect()">
+      <p class="tamaño-tex">
+      <br>
+      </p>
+    </button>
+    
+  </div>
+</div>-->
+
+
+
+
+

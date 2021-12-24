@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.label {
+    font-size: 11px;
+    border-radius: 4px;
+    padding: 3px 8px;
+    background-color: rgba(0,0,0,.08);
+    margin-right: 12px;
+
+    .label-color {
+        width: 8px;
+        height: 8px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+}

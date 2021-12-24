@@ -1,0 +1,7 @@
+<mat-accordion>
+    <app-form-groups *ngFor="let group of this.groups; let i=index" [group]="group"></app-form-groups>
+</mat-accordion>
+
+<div class="pt-12">
+    <button (click)="add_new_group_modal()" mat-raised-button> <span>Añadir Sección</span> </button>
+</div>

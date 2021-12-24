@@ -1,0 +1,42 @@
+<form action="" #orgForm="ngForm" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+    <h1 mat-dialog-title>{{this.title}} Organizacion</h1>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Abreviatura</mat-label>
+            <input matInput [(ngModel)]="this.org.abbreviation" required id="abrev" name="abrev">
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="this.org.name_organization" required id="cui" name="cui">
+        </mat-form-field>
+
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Url</mat-label>
+            <input matInput [(ngModel)]="this.org.url" required id="url" name="url">
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="this.dialogRef.close()">cancelar</button>
+        <button *ngIf="this.title == 'Agregar'" 
+            mat-raised-button 
+            [mat-dialog-close]="this.org" 
+            [disabled]="!orgForm.valid"
+            cdkFocusInitial>
+            <span>Agregar</span>
+        </button>
+        <button *ngIf="this.title == 'Editar'"
+            mat-raised-button
+            [mat-dialog-close]="this.org" 
+            [disabled]="!orgForm.valid"
+            cdkFocusInitial> 
+            <span>Actualizar</span>
+        </button>
+    </div>
+    <br>
+</form>

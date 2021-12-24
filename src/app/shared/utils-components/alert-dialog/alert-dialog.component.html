@@ -1,0 +1,23 @@
+<div *ngIf="this.title; else elseBlock">
+  <h1 mat-dialog-title>
+    <mat-icon style="color: rgba(0, 238, 255, 0.856);  font-size: 50px; margin-left: 75px;">help</mat-icon>
+  </h1>
+  <div mat-dialog-content>
+      <h3>¿Quiere llenar otra boleta?</h3>
+  </div>
+  <div mat-dialog-actions class="mt-12" fxLayout="row" fxLayoutAlign="center center">
+    <button class="m-4 red-500" mat-button (click)="dimiss(false)">No</button>
+    <button class="m-4 accent" mat-button (click)="dimiss(true)" cdkFocusInitial>Si</button>
+  </div>  
+</div>
+<ng-template #elseBlock >
+  <h1 mat-dialog-title>Advertencia</h1>
+  <div mat-dialog-content>
+      <h3>¿Está seguro de eliminar este registro?</h3>
+  </div>
+  <div mat-dialog-actions class="mt-12" fxLayout="row" fxLayoutAlign="center center">
+    <button class="m-4 red-500" mat-button (click)="dimiss(false)">Cancelar</button>
+    <button class="m-4 accent" mat-button (click)="dimiss(true)" cdkFocusInitial>Continuar</button>
+  </div>  
+</ng-template>
+

@@ -1,0 +1,22 @@
+.mat-icon {
+    font-size: 75px;
+}
+
+.label {
+    font-size: 11px;
+    border-radius: 4px;
+    padding: 5px 8px;
+    background-color: rgba(0,0,0,.08);
+    margin-right: 12px;
+
+    .label-color {
+        width: 8px;
+        height: 8px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+}
+
+.border{
+    border-radius: 10px;
+}

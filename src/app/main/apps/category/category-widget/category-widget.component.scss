@@ -1,0 +1,23 @@
+.widget {
+  min-width: 210px;
+  min-height: 210px;
+  width: 210px;
+  height: 210px;
+
+  padding: 24px 0;
+  margin: 16px;
+
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 8px;
+
+  transition: box-shadow 150ms ease-in;
+  cursor: pointer;
+}
+
+.tamaño-tex {
+  padding: 16px 32px 0 32px;
+  font-weight: 300;
+  font-size: 16px;
+  text-align: center;
+}

@@ -1,0 +1,113 @@
+<form action="" #userForm="ngForm" fxLayout="column" fxLayoutAlign="start" fxFlex="100">
+  <h1 mat-dialog-title>{{this.title}} Usuario</h1>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+      <mat-label>Nombres</mat-label>
+      <input matInput [(ngModel)]="this.user.person.first_name" required id="first_name" name="first_name">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+      <mat-label>Apellidos</mat-label>
+      <input matInput [(ngModel)]="this.user.person.last_name" required id="last_name" name="last_name">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+      <mat-label>DPI</mat-label>
+      <input matInput type="number" [(ngModel)]="this.user.person.cui" required id="cui" name="cui">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+      <mat-label>Fecha de nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="this.user.person.birthday" required id="birthday"
+        name="birthday" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+      <mat-label>Departamento</mat-label>
+      <mat-select [(ngModel)]="this.user.person.state.typology_id" name="state_id" (selectionChange)="load_city($event.value)">
+        <mat-option *ngFor="let state of this.state.childs" [value]="state.typology_id">
+          <option value="">{{state.description}}</option>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+      <mat-label>Municipio</mat-label>
+      <mat-select [(ngModel)]="this.user.person.city.typology_id" name="city_id">
+        <mat-option *ngFor="let city of this.city.childs" [value]="city.typology_id">
+          <option value="">{{city.description}}</option>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="this.user.person.email" required id="email" name="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngIf="this.title ==='Agregar'" >
+    <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="type" [(ngModel)]="this.user.password" required id="password" name="password">
+      <mat-hint >
+        <a *ngIf="type === 'password'" href="javascript:void(0)" (click)="showInput('text')">
+            <mat-icon>visibility</mat-icon>Mostrar contraseña </a>
+
+        <a  *ngIf="type === 'text'" href="javascript:void(0)" (click)="showInput('pass')">
+            <mat-icon>visibility_off</mat-icon>ocultar contraseña </a>
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="this.user.status.typology_id" name="status_id">
+        <mat-option *ngFor="let status of this.status.childs" [value]="status.typology_id">
+          <option value="">{{status.description}}</option>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+    <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+      <mat-label>Rol</mat-label>
+      <mat-select [(ngModel)]="this.user.role.typology_id" name="role_id">
+        <mat-option *ngFor="let rol of this.roles.childs" [value]="rol.typology_id">
+          <option value="">{{rol.description}}</option>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+      <mat-label>Institución</mat-label>
+      <mat-select [(ngModel)]="this.user.organization.organization_id" name="organization_id">
+        <mat-option *ngFor="let org of this.orgs" [value]="org.organization_id">
+          {{org.name_organization}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="this.dialogRef.close()">cancelar</button>
+    <button *ngIf="this.title == 'Agregar'"
+          mat-raised-button
+          [mat-dialog-close]="user" 
+          [disabled]="!userForm.valid"
+          cdkFocusInitial> 
+          <span>Agregar</span>
+      </button>
+      <button *ngIf="this.title == 'Editar'"
+            mat-raised-button
+            [mat-dialog-close]="user" 
+            [disabled]="!userForm.valid"
+            cdkFocusInitial> 
+            <span>Actualizar</span>
+        </button>
+  </div>
+  <br>
+</form>

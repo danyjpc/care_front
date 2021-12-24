@@ -1,0 +1,5 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="widget" 
+[ngStyle] = "{'border-color': categories.color, 'color': categories.color}" (click)="redirect(categories)">
+  <mat-icon class="s-56"> {{categories.icon}}</mat-icon>
+  <div class="tamaño-tex"> {{categories.name_category}} </div>
+</div>

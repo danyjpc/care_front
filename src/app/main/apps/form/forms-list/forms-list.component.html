@@ -1,0 +1,52 @@
+<table mat-table [dataSource]="this.forms" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let form"> <mat-icon>assignment</mat-icon> </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let form"> 
+        <b>{{form.name_form}}</b> 
+        <br>
+        <span>{{form.nrecorded}} Boletas registradas - Último registro el {{form.lastrecorded}}</span>
+      </td>
+      
+    </ng-container>
+
+    <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let form"> 
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="fill_survey(form)">
+                  <mat-icon>add</mat-icon>
+                  <span>Nuevo registro</span>
+                </button>
+                <button mat-menu-item (click)="download_csv(form)" [disabled]="form.nrecorded < 1">
+                  <mat-icon>arrow_downward</mat-icon>
+                  <span>Descargar CSV</span>
+                </button>
+                <button mat-menu-item (click)="view_stats(form)" [disabled]="form.nrecorded < 1">
+                  <mat-icon>poll</mat-icon>
+                  <span>Estadisticas</span>
+                </button>
+                <button mat-menu-item (click)="view_answer(form)" [disabled]="form.nrecorded < 1">
+                  <mat-icon>view_headline</mat-icon>
+                  <span>Respuestas</span>
+                </button>
+              </mat-menu>
+              
+        </td>
+      </ng-container>
+
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  

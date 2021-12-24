@@ -1,0 +1,5 @@
+<div class="board-lis" fxLayout="row wrap" fxLayout.xs="column"  fxFlex="0 0 auto" fxLayoutAlign="center center">
+	<div fxFlex.sm="50" *ngFor="let categ of this.categories" >
+		<app-category-widget [categories]="categ"></app-category-widget>
+	</div>
+</div>

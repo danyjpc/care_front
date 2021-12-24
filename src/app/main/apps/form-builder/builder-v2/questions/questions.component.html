@@ -1,0 +1,80 @@
+   <br>
+   <div fxLayout="row" fxLayoutAlign.sm="column" fxLayoutAlign="start center" class="p-8">
+        <!-- <mat-form-field appearance="outline" fxFlex="65" class="pr-8">
+            <input matInput [(ngModel)]="this.question.name_question" name="name_question" id="name_question" [value]="this.question.name_question" (change)="valueChange()" >
+        </mat-form-field> -->
+
+        <mat-form-field class="example-full-width" appearance="fill" fxFlex="65" class="pr-8">
+            <mat-label>Etiqueta de Pregunta</mat-label>
+            <input matInput [(ngModel)]="this.question.name_question" name="name_question" id="name_question" [value]="this.question.name_question" (change)="valueChange()" >
+          </mat-form-field>
+        
+        <mat-form-field appearance="outline" fxFlex="35">
+            <mat-icon matSuffix class="secondary-text">{{this.icon}}</mat-icon>
+            <mat-select [(ngModel)]="this.question.type"  name="type" id="type"  (selectionChange)="valueChange()"  [disabled]="this.question.type === 'state' || this.question.type === 'city'">
+                <mat-option *ngFor="let option of this.InputFormTypes" [value]="option.value" > 
+                    {{option.description}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <div fxFlex="5" fxLayoutAlign="center center">
+            <button (click)="remove_question_from_group()" mat-button><mat-icon>delete</mat-icon></button>
+        </div>
+    </div>
+
+    <ng-container *ngIf="this.question.type === 'state' || this.question.type === 'city'">
+        <div fxLayout="row" fxLayoutAlign="start center" class="p-8">
+            <div fxLayout="column" fxFlex="65">
+                <span *ngIf="this.question.type === 'state'"> Utilizaremos este catálogo de departamentos/Municipios pre definidos por el sistema para mostrarle a los operadores,  <b>Las preguntas Departamento y Municipio estan Vinculadas, Si elimina una de estas preguntas también deberá eliminar la otra</b></span> 
+                
+                <mat-form-field *ngIf="this.question.type === 'state'" appearance="outline" fxFlex="100">
+                    <mat-icon matSuffix class="secondary-text">location</mat-icon>
+                    <mat-select  name="state" id="state" >
+                        <mat-option *ngFor="let option of this.typologiesData.childs" [value]="option.description" > 
+                            {{option.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <span *ngIf="this.question.type === 'city'">
+                    El listado de municipios a mostrar dependerá del departamento seleccionado.   esto solo será visible en la vista para llenado de boletas.
+                </span>
+            </div>
+        </div>
+    </ng-container>
+
+
+
+ 
+
+
+    <ng-container *ngIf="this.hasOptions() ">
+        <div id="questionOptionsContent" class="p-8" >
+            <ng-container id="questionOptions" >
+                <div  fxLayout="row"  *ngFor="let option of this.question.options; let i=index">
+                    <div fxFlex="5" fxLayoutAlign="start center">
+                        <mat-icon>{{this.icon}}</mat-icon>
+                    </div>
+                    <mat-form-field  fxFlex="50" class="pr-4 pl-8">
+                        <input matInput 
+                            [(ngModel)]="option.value" 
+                            [id]="'option-'+ i" 
+                            [name]="'option-'+ i" 
+                            [ngModelOptions]="{standalone: true}"
+                            (change)="valueChange()"  >
+                    </mat-form-field>
+                    <div fxFlex="20" fxLayoutAlign="start center">
+                        <button (click)="remove_option_from_question(i)" mat-button><mat-icon>delete</mat-icon></button>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <button (click)="add_option_to_question()" mat-button><mat-icon>add</mat-icon> Agregar una Opción</button>
+                </div>
+            </ng-container>
+
+        </div>
+    </ng-container>
+    <br>
+    <mat-divider  >
+    </mat-divider>

@@ -1,0 +1,40 @@
+<h2>Párametros de filtros</h2>
+
+<form #paramsForm="ngForm" fxLayout="column">
+
+  <mat-form-field appearance="fill" fxFlex="100">
+    <mat-label>Filtrar por Módulos</mat-label>
+    <mat-select [(ngModel)]="this.filterParams.module_id" name="module_ie" id="module_id" >
+      <mat-option [value]="0" >Todos</mat-option>
+      <mat-option *ngFor="let module of this.modules" [value]="module.module_id">{{module.name_module}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" fxFlex="100">
+    <mat-label>Departamento</mat-label>
+    <mat-select [(ngModel)]="this.filterParams.state" name="state" >
+      <mat-option [value]="0" >Todos</mat-option>
+      <mat-option *ngFor="let state of this.states.childs" [value]="state.typology_id" > {{state.description}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+
+
+  <mat-form-field appearance="fill" fxFlex="100">
+    <mat-label>Fecha Inicial</mat-label>
+    <input matInput  [(ngModel)]="this.filterParams.date_start"  type="date" name="date_start" id="date_start">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill" fxFlex="100">
+    <mat-label>Fecha Final</mat-label>
+    <input matInput  type="date" [(ngModel)]="this.filterParams.date_end" name="date_end" id="date_end">
+  </mat-form-field>
+
+
+  <button mat-raised-button (click)="filter()" color="secondary" class="primary">
+      <mat-icon>filter</mat-icon> Filtrar Resultados
+  </button>
+
+</form>

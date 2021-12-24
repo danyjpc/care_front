@@ -1,0 +1,100 @@
+<form action="" name="surveyForm" [formGroup]="this.surveyForm" (keydown.enter)="$event.preventDefault()">
+
+<mat-accordion [formArrayName]="'survey'">
+    <mat-expansion-panel *ngFor="let group of this.formGroups; let indexGroup=index" [expanded]="true"> 
+
+      <mat-expansion-panel-header>
+        <mat-panel-title >
+            <span>{{group | getGroupFormName}}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+        <ng-container [formGroupName]="indexGroup">
+            <div [formArrayName]="'questions'">
+                <div *ngFor="let question  of this.questionsByGroup(indexGroup).controls; let questionIndex = index">    
+                    
+                    <div [formGroupName]="questionIndex">
+                        <div fxLayout="row" fxLayoutAlign.sm="column" fxLayoutAlign="start center" class="p-8">
+                            <mat-form-field appearance="outline" fxFlex="70" class="pr-20">
+                                <input matInput [formControlName]="'pregunta'">
+                            </mat-form-field>
+                            
+                            <mat-form-field appearance="outline" fxFlex="20">
+                                <mat-select [formControlName]="'input_type'" >
+                                    <mat-option *ngFor="let option of this.InputFormTypes" [value]="option.value" > 
+                                        {{option.description}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            
+                            <div fxFlex="10" fxLayoutAlign="center center">
+                                <button (click)="remove_question_from_group(indexGroup, questionIndex)" mat-button><mat-icon>delete</mat-icon></button>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="this.hasOptions(indexGroup, questionIndex)">
+                            <div id="questionOptionsContent" class="p-8" [formArrayName]="'question_options'">
+                                <ng-container id="questionOptions" >
+                                    <div  fxLayout="row"  *ngFor="let questionOption of this.optionsByQuestions(indexGroup, questionIndex).controls; let optionIndex=index">
+                                        <mat-form-field  fxFlex="30" class="pr-4 pl-8">
+                                            <input matInput [formControlName]="optionIndex" (keydown.enter)="add_option_to_question(indexGroup,questionIndex)">
+                                        </mat-form-field>
+                                        <div fxFlex="20" fxLayoutAlign="start center">
+                                            <button (click)="remove_option_from_question(indexGroup, questionIndex, optionIndex )" mat-button><mat-icon>delete</mat-icon></button>
+                                        </div>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <button (click)="add_option_to_question(indexGroup, questionIndex)" mat-button><mat-icon>add</mat-icon> Agregar una Opción</button>
+                                    </div>
+                                </ng-container>
+                                
+                            </div>
+                        </ng-container>
+                        
+
+            
+                        <mat-divider></mat-divider>                        
+                    </div>
+
+                </div>
+            </div>
+        </ng-container>
+            
+
+
+
+
+        <mat-action-row >
+            <button mat-icon-button >
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="questionsMenu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #questionsMenu="matMenu">
+                <!-- <button mat-menu-item (click)="add_question_to_group(indexGroup, type)"> 
+                  <mat-icon>dialpad</mat-icon>
+                  <span>Redial</span>
+                </button> -->
+
+                <button mat-menu-item *ngIf="indexGroup > 0" (click)="remove_group_form(indexGroup)">Quitar Grupo</button>
+              </mat-menu>
+
+              
+            <!-- <button mat-raised-button *ngIf="indexGroup > 0" (click)="remove_group_form(indexGroup)">Quitar Grupo</button> -->
+        </mat-action-row>
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</form>
+
+  
+<button mat-raised-button (click)="add_group_form()">Agregar Grupo de Preguntas</button>
+
+<pre>
+    {{this.surveyForm.value | json}}
+</pre>
+

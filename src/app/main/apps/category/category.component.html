@@ -1,0 +1,35 @@
+<div class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent gr"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- CONTENT HEADER -->
+        <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+            <div class="back" (click)="backClicked()"> <mat-icon class="s-50">arrow_back</mat-icon></div>
+            <h2 class="text">Seleccione una Categoría !</h2>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" >
+
+            <!-- CONTENT -->
+            <div class="content p-24" fxLayout="column" fxLayoutAlign="start center" fxFlex>
+                <br><br><br>
+                <app-category-list></app-category-list>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
+

@@ -1,0 +1,56 @@
+<form action="" #boletasForm="ngForm" >
+    <h1 mat-dialog-title>{{this.title}} Formulario  </h1>
+    <div mat-dialog-content fxLayout="column">
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>Nombre de Formulario</mat-label>
+            <input matInput [(ngModel)]="formulario.name_form" required  id="name_form" name="name_form">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>Módulo</mat-label>
+            <mat-select [(ngModel)]="formulario.module.module_id" id="module_id" name="module_id" (selectionChange)="loadCategories($event.value)" required>
+            <mat-option *ngFor="let module of projectModules" [value]="module.module_id">{{module.name_module}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>Categoría</mat-label>
+            <mat-select [(ngModel)]="formulario.category.category_id" id="categoria_id" name="categoria_id" required>
+            <mat-option *ngFor="let category of moduleCategories" [value]="category.category_id">{{category.name_category}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div fxLayout="row" fxFlex="100">
+            <div fxFlex="30">Formulario publico:</div>
+            <div fxFlex="70">
+                NO
+                <mat-slide-toggle [(ngModel)]="formulario.is_public" id="is_public" name="is_public">
+                </mat-slide-toggle>
+                SI
+            </div>
+        </div>
+        <br>
+    </div>
+
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="this.dialogRef.close()">cancelar</button>
+
+        <button *ngIf="this.title == 'Agregar'"
+            mat-raised-button
+            [mat-dialog-close]="formulario" 
+            [disabled]="!boletasForm.valid"
+            cdkFocusInitial> 
+            <span>Agregar</span>
+        </button>
+
+        <button *ngIf="this.title == 'Editar'"
+            mat-raised-button
+            [mat-dialog-close]="formulario" 
+            cdkFocusInitial> 
+            <span>Actualizar</span>
+
+        </button>
+    </div>
+</form>
+

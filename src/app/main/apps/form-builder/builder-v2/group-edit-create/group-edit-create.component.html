@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{this.tittle}} Sección  </h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre Sección</mat-label>
+    <input matInput [(ngModel)]="group.name_group">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">cancelar</button>
+  <button mat-button [mat-dialog-close]="group" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,56 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+        <div class="back" (click)="backClicked()"> <mat-icon class="s-50">arrow_back </mat-icon></div>
+       <h1>Perfil de usuario - {{this.user.person.first_name}} {{this.user.person.last_name}}</h1>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+        <div fxLayout="row" fxLayoutAlign="end start">
+            <button mat-stroked-button (click)="openEditFormUser(this.user)" class="orange-800"><mat-icon>edit</mat-icon> Editar Información</button>
+        </div>
+        <br>
+        <div fxLayout="row"  fxLayout.xs="column"  fxLayoutGap="10px">
+            <div fxFlex="60" fxFlex.xs="100">
+                <mat-card class="p-20">
+                    <span class="mat-headline"><mat-icon style="font-size: 30px;">person</mat-icon>     Informacion personal</span>                  
+                    <div class="pl-20">
+                        <p><b>Nombre</b><br>{{this.user.person.first_name}} </p>
+                        <p><b>Apellidos</b><br>{{this.user.person.last_name}}</p>
+                        <p><b>Nombre Mostrado</b><br>{{this.user.person.first_name}} {{this.user.person.last_name}}</p>
+                        <p><b>Email</b><br>{{this.user.person.email}}</p>
+                        <p><b>DPI</b><br>{{this.user.person.cui}}</p>
+                        <p><b>Departamento</b><br>{{this.user.person.state.description}}</p>
+                        <p><b>Municipio</b><br>{{this.user.person.city.description}}</p>
+                        <p><b>Fecha de nacimiento</b><br>{{this.user.person.birthday | date :'mediumDate'}}</p>
+                    </div>
+                </mat-card>
+
+            </div>
+            <div fxFlex="40" fxFlex.xs="100" fxLayout="column" fxLayoutGap="10px" >
+                <mat-card class="p-20">
+                    <span><mat-icon>business</mat-icon> Organizacion</span>
+                    <p class="pl-20">{{this.user.organization.name_organization}}</p>
+                </mat-card>
+                <mat-card class="p-20">
+                    <div fxLayout="row" fxLayoutAlign="start center space-between">
+                        <div fxFlex="70"><span><mat-icon>info</mat-icon> Informacion del usuario</span></div>
+                        <div fxFlex="30" fxLayoutAlign="end start"><button mat-mini-fab (click)="openFormChangePass(this.user)"><mat-icon>lock</mat-icon></button></div>
+                    </div>
+                    
+                    <div class="pl-20">
+                        <p><b>Id Interno</b><br>{{this.user.user_id}}</p>
+                        <p><b>Estado</b><br>{{this.user.status.description}}</p>
+                        <p><b>Rol</b><br>{{this.user.role.description}}</p>
+                        <p><b>Fecha de Creación</b><br>{{this.user.date_create | date :'mediumDate' }}</p>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <!-- / CONTENT -->
+
+</div>

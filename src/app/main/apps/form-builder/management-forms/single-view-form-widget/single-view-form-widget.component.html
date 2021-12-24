@@ -1,0 +1,44 @@
+<mat-card class="m-12 pl-36 pr-36" >
+    <div fxLayout="row" fxFlex="100">
+        <div fxFlex="90" fxLayout="column">
+            <span class="mat-title">{{formulario.name_form}}</span>
+            <div fxLayout="row">
+                <span class="mat-caption mr-12">Id: {{formulario.form_id}}</span>
+                <span class="mat-caption mr-12" > Creado el: {{formulario.date_created | date : 'mediumDate'}}</span>
+                
+
+                <div class="label" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="label-color" [ngStyle]="{'background-color': 'orange'}"></div>
+                    <div class="label-title"> Módulo: {{formulario.module.name_module}}</div>
+                </div>
+
+                <div class="label" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="label-color" [ngStyle]="{'background-color': 'pink'}"></div>
+                    <div class="label-title"> Categoría: {{formulario.category.name_category}}</div>
+                </div>
+                <div *ngIf="formulario.is_public" class="label" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="label-color" [ngStyle]="{'background-color': 'green'}"></div>
+                    <div class="label-title">Formulario público</div>
+                </div>
+
+            </div>
+        </div>
+        <div fxFlex="10" fxLayout="column" fxLayoutAlign="end end">
+            <div fxLayout="row">
+                <button class="m-4" (click)="go_to_builder_page()" color="" mat-mini-fab><mat-icon>build</mat-icon></button>
+                <button class="m-4" (click)="open_edit_form(formulario)" color="" mat-mini-fab><mat-icon>edit</mat-icon></button>
+            </div>
+            <div fxLayout="row">
+                <button class="m-4 red" (click)="delete_form(formulario)"  mat-mini-fab><mat-icon>delete</mat-icon></button>
+                <button class="m-4 "  color="" mat-mini-fab [matMenuTriggerFor]="menu" [disabled]="!this.formulario.is_public"><mat-icon>share</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="copyURL(formulario)"><mat-icon>file_copy</mat-icon> Copiar URL</button>
+                    <button mat-menu-item (click)="sendEmail(formulario)"><mat-icon>email</mat-icon> Enviar por correo</button>
+                    <button mat-menu-item (click)="sendWhatsApp(formulario)"><mat-icon>send</mat-icon> Enviar por WhatsApp</button>
+                </mat-menu>
+            </div>
+            
+            
+        </div>
+    </div>
+</mat-card>

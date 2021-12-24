@@ -1,0 +1,20 @@
+<div class="page-layout simple" *ngIf="this.form.is_public; else notPublic ">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="center center">
+        <h2> Formulario publico - {{this.form.name_form}}</h2>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24 center">
+        <app-question-group [isPublic]="true" [showButton]="'true'" style="width: 100%;"></app-question-group>
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+<ng-template #notPublic>
+    <error-404 style="width: 100%;" fxLayoutAlign="center center"></error-404>
+</ng-template>
+
+

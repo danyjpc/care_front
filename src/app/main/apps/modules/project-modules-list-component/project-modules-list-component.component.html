@@ -1,0 +1,26 @@
+<!--
+<div *ngFor="let projectModule of this.projectModules">
+    <app-project-modules-widget-component [projectModule]="projectModule"></app-project-modules-widget-component>
+</div>-->
+<!--
+<div class="bounds">
+	<div class="content" fxLayout="row wrap"  fxLayout.xs="column "  fxFlexFill
+    fxLayoutAlign="space-evenly none">
+
+		<div fxFlex="40%" class="sec1" fxFlex.xs="55" *ngFor="let projectModule of this.projectModules">
+			
+		</div>
+	</div>
+</div>-->
+<!--<app-project-modules-widget-component [projectModule]="projectModule"></app-project-modules-widget-component>-->
+
+
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayout ="center start" fxFlex="100" *ngIf="this.ListGroupPermissions[0]" >
+	<div fxFlex="45" class="m-20" fxFlex.sm="40" fxFlex.xs="100" fxFlex.xl="23" *ngFor="let projectModule of this.projectModules" >
+		<app-project-modules-widget-component [projectModule]="projectModule"
+		 [ListGroupPermisos]="ListGroupPermissions" [user_id]="user_id" >
+	</app-project-modules-widget-component>
+	</div>
+
+</div>

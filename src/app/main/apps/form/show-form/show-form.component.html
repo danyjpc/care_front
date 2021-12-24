@@ -1,0 +1,17 @@
+<div class="page-layout simple ">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center">
+        <div class="back" (click)="backClicked()"> <mat-icon class="s-50">arrow_back </mat-icon></div>
+        <h2 class="text">  {{this.form.name_form}}</h2>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24 center">
+        <app-question-group [isPublic]="false" [showButton]="this.show"></app-question-group>
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+

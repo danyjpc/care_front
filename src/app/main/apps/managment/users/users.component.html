@@ -1,0 +1,25 @@
+<div class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 gr" fxLayout="row" fxLayoutAlign="start center space-between">
+        <div fxFlex="70" fxLayout="row" fxLayoutAlign="start center">
+            <app-arrow-back></app-arrow-back> 
+            <h2 class="text"> Administrar Usuarios </h2>
+        </div>
+        <div fxFlex="30" fxLayoutAlign="end start"> <button (click)="open_dialog_form()" style="align-items: rigth;" class="pink-600-fg" mat-raised-button>Agregar Usuario</button></div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-48">
+
+        <mat-card>
+            
+            <app-user-list></app-user-list>
+
+        </mat-card>
+           
+    </div>
+    <!-- / CONTENT -->
+
+</div>

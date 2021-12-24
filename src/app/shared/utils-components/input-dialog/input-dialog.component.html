@@ -1,0 +1,24 @@
+<form action="" #inputForm="ngForm">
+    <div mat-dialog-content fxLayout="column">
+        <div *ngIf="!this.inputNumber; else elseDiv" fxLayout="column">
+            <h2><b> Ingrese la dirección de correo </b></h2>
+            <mat-form-field appearance="outline" fxFlex="100">
+                <input matInput type="email" [(ngModel)]="this.email" id="email" name="email" required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Ex. ejemplo@gmail.com">
+            </mat-form-field>
+        </div>
+        <ng-template #elseDiv>
+            <h2><b> Ingrese el número teléfono</b></h2>
+            <mat-form-field appearance="fill">
+                <span matPrefix>+502 &nbsp;</span>
+                <input matInput type="number" [(ngModel)]="this.phoneNumber" id="phoneNumber" name="phoneNumber" required>
+            </mat-form-field>
+        </ng-template>
+
+    </div>
+    <div mat-dialog-actions class="mt-12" fxLayout="row" fxLayoutAlign="center center">
+        <button class="m-4 red-500" mat-button (click)="this.dialogRef.close()">Cancelar</button>
+        <button class="m-4 accent" mat-button (click)="dimiss()" cdkFocusInitial
+            [disabled]="!inputForm.valid">Enviar</button>
+    </div>
+</form>
